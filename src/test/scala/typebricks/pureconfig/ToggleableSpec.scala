@@ -21,7 +21,7 @@ import typebricks.pureconfig.toggleable.EnabledWhen
 import typebricks.pureconfig.toggleable.FlagIs
 import typebricks.pureconfig.toggleable.unsafe.given
 
-import scala.jdk.javaapi.CollectionConverters.*
+import scala.jdk.CollectionConverters.*
 
 import matchers.*
 
@@ -33,7 +33,7 @@ class ToggleableSpec extends AnyWordSpec, must.Matchers:
   type CustomEnabled = Foo EnabledWhen ("custom-activation-flag", true)
   type CustomDisabled = Foo EnabledWhen ("custom-disabled-flag", false)
 
-  def mkObject(pairs: (String, Any)*): ConfigObject = ConfigValueFactory.fromMap(asJava(Map(pairs: _*)))
+  def mkObject(pairs: (String, Any)*): ConfigObject = ConfigValueFactory.fromMap(Map(pairs: _*).asJava)
 
   def decode[A](cv: ConfigValue)(using r: ConfigReader[A]): ConfigReader.Result[A] = r.from(cv)
 

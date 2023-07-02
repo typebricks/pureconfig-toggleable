@@ -15,6 +15,8 @@ package object toggleable:
   final type Toggleable[+A] = A ToggleableByFlag "enabled"
 
   object unsafe:
+    import scala.jdk.CollectionConverters.*
+
     private def unsafeAsObject(cv: ConfigValue): ConfigObject =
       if cv.valueType() != ConfigValueType.OBJECT then {
         throw new ConfigException.WrongType(cv.origin(), "has to be written as ConfigObject for toggling")
@@ -29,5 +31,5 @@ package object toggleable:
           throw new ConfigException.BadValue(obj.origin(), valueOf[K], "inner key conflicts with a toggling key")
         else obj.withValue(valueOf[K], ConfigValueFactory.fromAnyRef(valueOf[V]))
       case Disabled =>
-        ConfigValueFactory.fromMap(java.util.Map.of(valueOf[K], !valueOf[V]))
+        ConfigValueFactory.fromMap(Map(valueOf[K] -> !valueOf[V]).asJava)
     }
