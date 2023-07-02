@@ -1,0 +1,5 @@
+addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.5.0")
+addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.10.4")
+addSbtPlugin("com.github.sbt" % "sbt-ci-release" % "1.5.12")
+addSbtPlugin("com.github.sbt" % "sbt-license-report" % "1.5.0")
+addSbtPlugin("org.jmotor.sbt" % "sbt-dependency-updates" % "1.2.7")

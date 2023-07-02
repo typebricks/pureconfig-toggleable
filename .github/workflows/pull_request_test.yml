@@ -1,0 +1,31 @@
+name: Run Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+concurrency:
+  group: ${{ github.ref_name }}-test
+  cancel-in-progress: true
+
+jobs:
+  test_scala:
+    name: "Run scala tests"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: corretto
+          java-version: 17
+          cache: sbt
+
+      - name: Lint
+        run: sbt "scalafixAll --check"
+
+      - name: Test
+        run: sbt test
