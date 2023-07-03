@@ -1,5 +1,7 @@
 # Pureconfig Toggleable
 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.typebricks/pureconfig-toggleable_3/badge.svg)](https://search.maven.org/artifact/io.github.typebricks/pureconfig-toggleable_3/1.0.0/jar)
+
 A tiny type brick for Scala 3 makes it possible to explicitly toggle config sections.
 
 When a toggleable section is disabled, its content won't be decoded by `ConfigReader`
@@ -11,6 +13,10 @@ There's only two possible cases for `Toggleable[A]`
 
 one can naturally convert it to `Option[A]` using `.toOption` method
 
+## Installation
+```sbt
+libraryDependencies += "io.github.typebricks" %% "pureconfig-toggleable" % "1.0.0"
+```
 
 ## Code example
 
